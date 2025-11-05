@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../lib/firebase';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
   const nav = useNavigate();
@@ -45,6 +46,9 @@ export default function Login() {
         />
         {err && <p style={{ color:'crimson' }}>{err}</p>}
         <button disabled={busy} type="submit">Log in</button>
+        <p style={{ marginTop: 12 }}>
+          New here? <Link to="/register">Create an account</Link>
+        </p>
       </form>
     </div>
   );
