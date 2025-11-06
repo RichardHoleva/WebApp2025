@@ -4,7 +4,8 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
+  max-width: 390px;
+  margin: 0 auto;
 }
 
 .onboarding-content {
@@ -14,6 +15,63 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.onboarding-header {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  
+}
+
+.onboarding-logo {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.onboarding-logo img {
+  width: 35px;
+  height: auto;
+}
+
+.onboarding-image-bg {
+  width: 100vw;
+  max-width: 390px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  overflow: hidden;
+  
+}
+
+.onboarding-image-bg img {
+  width: 110%;
+  height: auto;
+  object-fit: cover;
+  transform:  translateY(-7%);
+  
+}
+
+.onboarding-image-overlay {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.onboarding-image-overlay img {
+  width: 210px;
+  height: auto;
 }
 
 .onboarding-buttons {
@@ -38,17 +96,8 @@
   color: #201E1F;
 }
 
-.btn-join:hover {
-  background-color: #e00060;
-}
-
 .btn-signin {
   background-color: transparent;
   color: white;
-   border: white solid 2px;
+  border: 2px solid #DAFF00;
 }
-
-.btn-signin:hover {
-  background-color: rgba(255, 0, 106, 0.1);
-}
-
