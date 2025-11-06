@@ -10,8 +10,8 @@ export default function OnBoarding() {
       <div className="onboarding-logo">
         <img src={Logo} alt="Runder Logo" />
       </div>
-      
-      <div className="onboarding-content">
+
+  <div className="onboarding-content">
         <h1>Welcome to Runder</h1>
         <p>Get started with your running journey</p>
       </div>

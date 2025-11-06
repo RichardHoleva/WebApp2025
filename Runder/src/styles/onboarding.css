@@ -28,15 +28,14 @@
   flex: 1;
   padding: 12px 24px;
   font-size: 16px;
-  border-radius: 8px;
-  border: none;
+  border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .btn-join {
-  background-color: #ff006a;
-  color: white;
+  background-color: #DAFF00;
+  color: #201E1F;
 }
 
 .btn-join:hover {
@@ -46,9 +45,10 @@
 .btn-signin {
   background-color: transparent;
   color: white;
-  border: 2px solid #ff006a;
+   border: white solid 2px;
 }
 
 .btn-signin:hover {
   background-color: rgba(255, 0, 106, 0.1);
 }
+
