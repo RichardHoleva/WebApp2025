@@ -1,64 +1,118 @@
-// WeekSlider.jsx
-import { useMemo, useState } from "react";
-import "../styles/calendar.css"; // we'll create this next
+// Calendar.jsx
+import { useState } from "react";
+import "../styles/calendar.css";
 
-const DAY_LETTERS = ["S","M","T","W","T","F","S"];
+export default function Calendar() {
+  const [currentWeekStart, setCurrentWeekStart] = useState(getMonday(new Date()));
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
-function startOfISOWeek(d) {
-  const date = new Date(d);
-  const day = (date.getDay() + 6) % 7; // Mon=0 … Sun=6
-  date.setDate(date.getDate() - day);
-  date.setHours(0,0,0,0);
-  return date;
-}
-function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
-function isoWeekNumber(d) {
-  const date = new Date(d);
-  date.setHours(0,0,0,0);
-  // Thursday in current week decides the year
-  date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
-  const firstThursday = new Date(date.getFullYear(), 0, 4);
-  const diff = date - startOfISOWeek(firstThursday);
-  return 1 + Math.round(diff / (7 * 24 * 60 * 60 * 1000));
-}
-const fmt = (d, opts) => d.toLocaleDateString(undefined, opts);
+  function getMonday(date) {
+    const day = date.getDay();
+    const diff = day === 0 ? -6 : 1 - day;
+    const monday = new Date(date);
+    monday.setDate(date.getDate() + diff);
+    monday.setHours(0, 0, 0, 0);
+    return monday;
+  }
 
-export default function WeekSlider() {
-  const [anchor, setAnchor] = useState(startOfISOWeek(new Date())); // Monday of shown week
-  const [selected, setSelected] = useState(new Date());
-  const days = useMemo(() => [...Array(7)].map((_,i)=>addDays(anchor,i)), [anchor]);
+  function addDays(date, days) {
+    const result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
 
-  const weekNum = isoWeekNumber(anchor);
-  const rangeStr = `${fmt(days[0], { day:"2-digit", month:"short" })} – ${fmt(days[6], { day:"2-digit", month:"short", year:"numeric" })}`;
+  function goToPreviousWeek() {
+    setCurrentWeekStart(addDays(currentWeekStart, -7));
+  }
+
+  function goToNextWeek() {
+    setCurrentWeekStart(addDays(currentWeekStart, 7));
+  }
+
+  function formatDate(date) {
+    return date.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
+  }
+
+  function isToday(date) {
+    const today = new Date();
+    return date.toDateString() === today.toDateString();
+  }
+
+  function isSelected(date) {
+    return date.toDateString() === selectedDate.toDateString();
+  }
+
+  function getWeekNumber(date) {
+    const tempDate = new Date(date);
+    tempDate.setHours(0, 0, 0, 0);
+    tempDate.setDate(tempDate.getDate() + 3 - ((tempDate.getDay() + 6) % 7));
+    const week1 = new Date(tempDate.getFullYear(), 0, 4);
+    return 1 + Math.round(((tempDate - week1) / 86400000 - 3 + ((week1.getDay() + 6) % 7)) / 7);
+  }
+
+  const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const daysInWeek = [];
+  for (let i = 0; i < 7; i++) {
+    daysInWeek.push(addDays(currentWeekStart, i));
+  }
+
+  const weekNumber = getWeekNumber(currentWeekStart);
+
+  function handleToggle() {
+    if (!isCollapsed) {
+      setIsClosing(true);
+      setTimeout(() => {
+        setIsCollapsed(true);
+        setIsClosing(false);
+      }, 300);
+    } else {
+      setIsCollapsed(false);
+    }
+  }
 
   return (
-    <div className="week-slider">
-      <header className="week-slider__header">
-        <button className="week-slider__arrow" onClick={() => setAnchor(addDays(anchor, -7))}>‹</button>
-        <div className="week-slider__title">
-          <div className="week-slider__week">WEEK {weekNum}</div>
-          <div className="week-slider__range">{rangeStr.toUpperCase()}</div>
+    <div className={`calendar ${isCollapsed ? 'collapsed' : ''}`}>
+      <div className="calendar-header">
+        <button className="calendar-arrow" onClick={goToPreviousWeek}>
+          &lt;
+        </button>
+        <div className="calendar-title">
+          <div className="calendar-week">WEEK {weekNumber}</div>
+          <div className="calendar-range">
+            {formatDate(daysInWeek[0]).toUpperCase()} - {formatDate(daysInWeek[6]).toUpperCase()}
+          </div>
         </div>
-        <button className="week-slider__arrow" onClick={() => setAnchor(addDays(anchor, 7))}>›</button>
-      </header>
-
-      <div className="week-slider__days">
-        {days.map((d, i) => {
-          const isActive = d.toDateString() === new Date(selected).toDateString();
-          return (
-            <button
-              key={i}
-              className={`day ${isActive ? "day--active" : ""}`}
-              onClick={() => setSelected(d)}
-              aria-label={fmt(d, { weekday:"long", year:"numeric", month:"long", day:"numeric" })}
-            >
-              <span className="day__letter">{DAY_LETTERS[i]}</span>
-              <span className="day__dot" />
-              <span className="day__date">{fmt(d, { day:"2-digit", month:"short" }).toUpperCase()}</span>
-            </button>
-          );
-        })}
+        <button className="calendar-arrow" onClick={goToNextWeek}>
+          &gt;
+        </button>
       </div>
+
+      {(!isCollapsed || isClosing) && (
+        <div className={`calendar-days ${isClosing ? 'closing' : ''}`}>
+          {daysInWeek.map((day, index) => (
+            <div key={index} className="calendar-day-wrapper">
+              <button
+                className={`calendar-day ${isSelected(day) ? 'selected' : ''}`}
+                onClick={() => setSelectedDate(day)}
+              >
+                <span className="day-letter">{weekDays[index]}</span>
+                {isToday(day) && <span className="day-dot"></span>}
+              </button>
+              <span className="day-date">{formatDate(day).toUpperCase()}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <button 
+        className="calendar-toggle" 
+        onClick={handleToggle}
+        aria-label={isCollapsed ? "Expand calendar" : "Collapse calendar"}
+      >
+        <span className="toggle-line"></span>
+      </button>
     </div>
   );
 }
