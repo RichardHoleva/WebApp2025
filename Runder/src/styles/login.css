@@ -35,3 +35,10 @@
 .login-container .signup-link {
   margin-top: 12px;
 }
+
+.signup-link {
+  display: block;       /* make the paragraph take full width */
+  width: 100%;
+  text-align: right;    /* align the link to the right */
+  margin-top: 8px;
+}
