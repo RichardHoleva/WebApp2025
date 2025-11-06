@@ -13,9 +13,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --accent: #DAFF00;
 }
-
-
 
 body {
   margin: 0;
@@ -63,3 +62,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* This is making all of the links green :) */
+a,
+a:link,
+a:visited {
+  color: var(--accent);
+}
+

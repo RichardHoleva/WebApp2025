@@ -12,36 +12,44 @@ export default function Register() {
   const [err, setErr] = useState(null);
   const [busy, setBusy] = useState(false);
 
+  const fieldStyle = {
+    display: 'block',
+    width: '100%',
+    marginBottom: 8,
+    padding: '0.6em 1.2em', 
+    boxSizing: 'border-box'
+  };
+
   async function onRegister(e) {
-  e.preventDefault();
-  setBusy(true); setErr(null);
-  
-  if (pw !== confirmPw) {
-    setErr('Passwords do not match');
-    setBusy(false);
-    return;
+    e.preventDefault();
+    setBusy(true); setErr(null);
+
+    if (pw !== confirmPw) {
+      setErr('Passwords do not match');
+      setBusy(false);
+      return;
+    }
+
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, pw);
+      if (name) await updateProfile(cred.user, { displayName: name });
+      nav('/dashboard', { replace: true });
+    } catch (e) {
+      setErr(e.message);
+    } finally {
+      setBusy(false);
+    }
   }
-  
-  try {
-    const cred = await createUserWithEmailAndPassword(auth, email, pw);
-    if (name) await updateProfile(cred.user, { displayName: name });
-    nav('/dashboard', { replace: true }); // Changed from '/' to '/dashboard'
-  } catch (e) {
-    setErr(e.message);
-  } finally {
-    setBusy(false);
-  }
-}
 
   return (
     <div style={{ maxWidth: 360, margin: '40px auto' }}>
       <h1>Create account</h1>
       <form onSubmit={onRegister}>
         <input
-          placeholder="Name (optional)"
+          placeholder="Username"
           value={name}
           onChange={e=>setName(e.target.value)}
-          style={{ display:'block', width:'100%', marginBottom:8 }}
+          style={fieldStyle}
         />
         <input
           placeholder="Email"
@@ -49,7 +57,7 @@ export default function Register() {
           value={email}
           onChange={e=>setEmail(e.target.value)}
           required
-          style={{ display:'block', width:'100%', marginBottom:8 }}
+          style={fieldStyle}
         />
         <input
           placeholder="Password (min 6)"
@@ -57,19 +65,25 @@ export default function Register() {
           value={pw}
           onChange={e=>setPw(e.target.value)}
           required
-          style={{ display:'block', width:'100%', marginBottom:8 }}
+          style={fieldStyle}
         />
 
-        <input 
+        <input
           placeholder="Confirm Password"
           type="password"
           value={confirmPw}
           onChange={e=>setConfirmPw(e.target.value)}
           required
-          style={{ display:'block', width:'100%', marginBottom:8 }}
+          style={fieldStyle}
         />
         {err && <p style={{ color:'crimson' }}>{err}</p>}
-        <button disabled={busy} type="submit">Sign up</button>
+        <button
+          disabled={busy}
+          type="submit"
+          style={{ display: 'block', width: '100%', padding: '0.6em 1.2em', marginTop: 36 }}
+        >
+          Register
+        </button>
       </form>
 
       <p style={{ marginTop: 12 }}>
