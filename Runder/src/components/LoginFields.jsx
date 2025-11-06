@@ -28,7 +28,7 @@ async function onLogin(e) {
   return (
     <form onSubmit={onLogin}>
       <input
-        placeholder="Email"
+        placeholder="Username or Email"
         type="email"
         value={email}
         onChange={(e)=>setEmail(e.target.value)}
@@ -44,7 +44,7 @@ async function onLogin(e) {
       {err && <p className="error-message">{err}</p>}
       <button disabled={busy} type="submit">Log in</button>
       <p className="signup-link">
-        New here? <Link to="/register">Create an account</Link>
+       <Link to="/register">Forgot password?</Link>
       </p>
     </form>
   );
