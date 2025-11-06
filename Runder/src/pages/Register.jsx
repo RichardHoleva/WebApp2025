@@ -18,7 +18,7 @@ export default function Register() {
   const fieldStyle = {
     display: 'block',
     width: '100%',
-    marginBottom: 8,
+    marginBottom: 10 ,
     padding: '0.6em 1.2em', 
     boxSizing: 'border-box'
   };
@@ -45,7 +45,7 @@ export default function Register() {
   }
 
   return (
-    <div style={{ maxWidth: 360, margin: '40px auto' }}>
+    <div className="login-container" style={{ maxWidth: 360, margin: '40px auto' }}>
       <h1>Create account</h1>
       <form onSubmit={onRegister}>
         <input
@@ -90,7 +90,7 @@ export default function Register() {
       </form>
 
       <p style={{ marginTop: 12 }}>
-        Already have an account? <Link to="/login">Log in</Link>
+        Already have an account? <Link to="/login"> Log in</Link>
       </p>
 
       <div className="social-login">
