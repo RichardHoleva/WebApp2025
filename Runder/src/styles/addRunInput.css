@@ -1,0 +1,35 @@
+.add-run-button {
+  width: 100%;
+  max-width: 42rem;
+  padding: 3rem 2rem;
+  background-color: #201E1F;
+  border-radius: 1.5rem;
+  border: 1px solid #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.add-run-button:hover {
+  background-color: #201E1F;
+}
+
+.add-run-plus {
+  color: #f97316;
+  font-size: 3rem;
+  font-weight: 300;
+  transition: transform 0.3s ease;
+}
+
+.add-run-button:hover .add-run-plus {
+  transform: scale(1.1);
+}
+
+.add-run-text {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 500;
+}
