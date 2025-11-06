@@ -1,0 +1,54 @@
+.onboarding-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.onboarding-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.onboarding-buttons {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+  padding-bottom: 40px;
+}
+
+.onboarding-buttons button {
+  flex: 1;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-join {
+  background-color: #ff006a;
+  color: white;
+}
+
+.btn-join:hover {
+  background-color: #e00060;
+}
+
+.btn-signin {
+  background-color: transparent;
+  color: white;
+  border: 2px solid #ff006a;
+}
+
+.btn-signin:hover {
+  background-color: rgba(255, 0, 106, 0.1);
+}

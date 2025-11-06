@@ -12,18 +12,18 @@ export default function LoginFields() {
   const [err, setErr] = useState(null);
   const [busy, setBusy] = useState(false);
 
-  async function onLogin(e) {
-    e.preventDefault();
-    setBusy(true); setErr(null);
-    try {
-      await signInWithEmailAndPassword(auth, email, pw);
-      nav('/', { replace: true });
-    } catch (e) {
-      setErr(e.message);
-    } finally {
-      setBusy(false);
-    }
+async function onLogin(e) {
+  e.preventDefault();
+  setBusy(true); setErr(null);
+  try {
+    await signInWithEmailAndPassword(auth, email, pw);
+    nav('/dashboard', { replace: true }); // Changed from '/' to '/dashboard'
+  } catch (e) {
+    setErr(e.message);
+  } finally {
+    setBusy(false);
   }
+}
 
   return (
     <form onSubmit={onLogin}>

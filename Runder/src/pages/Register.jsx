@@ -13,26 +13,25 @@ export default function Register() {
   const [busy, setBusy] = useState(false);
 
   async function onRegister(e) {
-    e.preventDefault();
-    setBusy(true); setErr(null);
-    
-    if (pw !== confirmPw) {
-      setErr("Passwords do not match");
-      setBusy(false);
-      return;
-    }
-    
-    try {
-      // password must be 6+ chars
-      const cred = await createUserWithEmailAndPassword(auth, email, pw);
-      if (name) await updateProfile(cred.user, { displayName: name });
-      nav('/', { replace: true });   // go to dashboard
-    } catch (e) {
-      setErr(e.message);
-    } finally {
-      setBusy(false);
-    }
+  e.preventDefault();
+  setBusy(true); setErr(null);
+  
+  if (pw !== confirmPw) {
+    setErr('Passwords do not match');
+    setBusy(false);
+    return;
   }
+  
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pw);
+    if (name) await updateProfile(cred.user, { displayName: name });
+    nav('/dashboard', { replace: true }); // Changed from '/' to '/dashboard'
+  } catch (e) {
+    setErr(e.message);
+  } finally {
+    setBusy(false);
+  }
+}
 
   return (
     <div style={{ maxWidth: 360, margin: '40px auto' }}>

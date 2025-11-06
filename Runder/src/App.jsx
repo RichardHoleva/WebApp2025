@@ -3,16 +3,22 @@ import Protected from './auth/Protected';
 import Login from './pages/Login.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Register from './pages/Register.jsx';
+import OnBoarding from './pages/OnBoarding.jsx';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public routes - no authentication required */}
+        <Route path="/" element={<OnBoarding />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        
+        {/* Protected routes - authentication required */}
         <Route element={<Protected />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
+        
         <Route path="*" element={<div>Not found</div>} />
       </Routes>
     </BrowserRouter>
