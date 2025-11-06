@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../lib/firebase';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import '../styles/login.css'
 
 export default function Login() {
   const nav = useNavigate();
@@ -25,7 +26,7 @@ export default function Login() {
   }
 
   return (
-    <div style={{ maxWidth: 360, margin: '40px auto' }}>
+    <div className="login-container">
       <h1>Log in</h1>
       <form onSubmit={onLogin}>
         <input
@@ -34,7 +35,6 @@ export default function Login() {
           value={email}
           onChange={(e)=>setEmail(e.target.value)}
           required
-          style={{ display:'block', width:'100%', marginBottom:8 }}
         />
         <input
           placeholder="Password"
@@ -42,11 +42,10 @@ export default function Login() {
           value={pw}
           onChange={(e)=>setPw(e.target.value)}
           required
-          style={{ display:'block', width:'100%', marginBottom:8 }}
         />
-        {err && <p style={{ color:'crimson' }}>{err}</p>}
+        {err && <p className="error-message">{err}</p>}
         <button disabled={busy} type="submit">Log in</button>
-        <p style={{ marginTop: 12 }}>
+        <p className="signup-link">
           New here? <Link to="/register">Create an account</Link>
         </p>
       </form>

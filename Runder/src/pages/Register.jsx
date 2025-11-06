@@ -8,12 +8,20 @@ export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
+  const [confirmPw, setConfirmPw] = useState('');
   const [err, setErr] = useState(null);
   const [busy, setBusy] = useState(false);
 
   async function onRegister(e) {
     e.preventDefault();
     setBusy(true); setErr(null);
+    
+    if (pw !== confirmPw) {
+      setErr("Passwords do not match");
+      setBusy(false);
+      return;
+    }
+    
     try {
       // password must be 6+ chars
       const cred = await createUserWithEmailAndPassword(auth, email, pw);
@@ -49,6 +57,15 @@ export default function Register() {
           type="password"
           value={pw}
           onChange={e=>setPw(e.target.value)}
+          required
+          style={{ display:'block', width:'100%', marginBottom:8 }}
+        />
+
+        <input 
+          placeholder="Confirm Password"
+          type="password"
+          value={confirmPw}
+          onChange={e=>setConfirmPw(e.target.value)}
           required
           style={{ display:'block', width:'100%', marginBottom:8 }}
         />
