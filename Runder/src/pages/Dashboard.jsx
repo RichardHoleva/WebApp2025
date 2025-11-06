@@ -4,6 +4,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../lib/firebase';
 import AddRunInput from '../components/AddRunInput.jsx';
 import NavBar from '../components/NavBar.jsx';
+import Calendar from '../components/Calendar.jsx';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -14,6 +15,7 @@ export default function Dashboard() {
 
   return (
     <>
+     <Calendar /> 
       <div>
         <header>
           <h2>Welcome, {user?.email ?? 'runner'}</h2>
@@ -21,6 +23,8 @@ export default function Dashboard() {
         </header>
 
         <p>Next: Register page and Firestore events.</p>
+
+        
 
         <section>
           <AddRunInput title="New run" onAdd={handleAdd} />
