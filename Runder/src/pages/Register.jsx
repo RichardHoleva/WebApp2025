@@ -14,6 +14,7 @@ export default function Register() {
   const [confirmPw, setConfirmPw] = useState('');
   const [err, setErr] = useState(null);
   const [busy, setBusy] = useState(false);
+  
 
   const fieldStyle = {
     display: 'block',

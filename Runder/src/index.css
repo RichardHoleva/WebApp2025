@@ -63,10 +63,4 @@ button:focus-visible {
   }
 }
 
-/* This is making all of the links green :) */
-a,
-a:link,
-a:visited {
-  color: var(--accent);
-}
 
