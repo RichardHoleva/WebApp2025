@@ -2,7 +2,7 @@ import React from 'react';
 import runnerImage from '../assets/runner.png';
 import '../styles/event-card.css';
 
-export default function EventCard({ title, location, date, imageUrl, onJoinEvent }) {
+export default function EventCard({ title, location, date, imageUrl, onJoinEvent, description }) {
   return (
     <div className="event-card">
       <div className="event-image-container">
