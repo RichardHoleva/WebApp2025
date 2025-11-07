@@ -4,6 +4,7 @@ import Login from './pages/Login.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Register from './pages/Register.jsx';
 import OnBoarding from './pages/OnBoarding.jsx';
+import CreateGeneral from './pages/Create-General.jsx';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         {/* Protected routes - authentication required */}
         <Route element={<Protected />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/create-general" element={<CreateGeneral />} />
         </Route>
         
         <Route path="*" element={<div>Not found</div>} />
