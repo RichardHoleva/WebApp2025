@@ -1,11 +1,17 @@
-.add-run-button {
-  width: 100%;
-  max-width: 203rem;
-  padding: 3rem 2rem;
-  background-color: #201E1F;
-  border-radius: 1.5rem;
-  border: 1px solid #cccccc;
+.add-run-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-run-button {
+  width: 351px;
+  height: 123px;
+  background-color: transparent;
+  border-radius: 20px;
+  border: 4px solid #4444;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 1rem;
@@ -13,23 +19,19 @@
   cursor: pointer;
 }
 
-.add-run-button:hover {
-  background-color: #201E1F;
-}
 
 .add-run-plus {
   color: #f97316;
-  font-size: 3rem;
-  font-weight: 300;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
   transition: transform 0.3s ease;
 }
 
-.add-run-button:hover .add-run-plus {
-  transform: scale(1.1);
-}
 
 .add-run-text {
   color: #ffffff;
-  font-size: 2rem;
+  font-size: 25px;
   font-weight: 500;
+  line-height: 1;
 }

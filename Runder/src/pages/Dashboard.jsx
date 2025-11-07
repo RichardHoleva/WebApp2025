@@ -1,10 +1,10 @@
 import React from 'react';
 import { useAuth } from '../auth/AuthProvider';
-import { signOut } from 'firebase/auth';
-import { auth } from '../lib/firebase';
 import AddRunInput from '../components/AddRunInput.jsx';
 import NavBar from '../components/NavBar.jsx';
 import Calendar from '../components/Calendar.jsx';
+import Filter from '../components/Filter.jsx';
+import '../styles/dashboard.css';
 import EventCard from '../components/event-card';
 import runnerImage from '../assets/runner.png';
 
@@ -18,10 +18,9 @@ export default function Dashboard() {
   return (
     <>
       <Calendar />
+      <Filter />
       <div>
-        <header>
-          <button onClick={() => signOut(auth)}>Sign out</button>
-        </header>
+
 
       
         <section>
@@ -30,7 +29,6 @@ export default function Dashboard() {
         
         <main className="dashboard">
           <div className="dashboard-container">
-            <h1 className="dashboard-title">Upcoming Events</h1>
 
             <div className="events-list">
               <EventCard
@@ -48,6 +46,8 @@ export default function Dashboard() {
                 imageUrl={runnerImage}
                 onJoinEvent={() => console.log("Joined Urban Steps Challenge")}
               />
+
+              
             </div>
           </div>
         </main>
