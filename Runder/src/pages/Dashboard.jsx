@@ -17,47 +17,43 @@ export default function Dashboard() {
 
   return (
     <>
-     <Calendar /> 
+      <Calendar />
       <div>
         <header>
           <h2>Welcome, {user?.email ?? 'runner'}</h2>
           <button onClick={() => signOut(auth)}>Sign out</button>
         </header>
 
-        <p>Next: Register page and Firestore events.</p>
-
-        
-
+      
         <section>
           <AddRunInput title="New run" onAdd={handleAdd} />
         </section>
-      </div>  
+        
+        <main className="dashboard">
+          <div className="dashboard-container">
+            <h1 className="dashboard-title">Upcoming Events</h1>
 
-                <main className="min-h-screen bg-background p-8">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">Upcoming Events</h1>
+            <div className="events-list">
+              <EventCard
+                title="Bay Breeze Dash"
+                location="Risskov Strandpark"
+                date={{ month: "OCT", day: "24" }}
+                imageUrl={runnerImage}
+                onJoinEvent={() => console.log("Joined Bay Breeze Dash")}
+              />
 
-        <div className="flex flex-col gap-6">
-          <EventCard
-            title="Bay Breeze Dash"
-            location="Risskov Strandpark"
-            date={{ month: "OCT", day: "24" }}
-            imageUrl={runnerImage}
-            onJoinEvent={() => console.log("Joined Bay Breeze Dash")}
-          />
+              <EventCard
+                title="Urban Steps Challenge"
+                location="Aarhus City Hall Square"
+                date={{ month: "NOV", day: "12" }}
+                imageUrl={runnerImage}
+                onJoinEvent={() => console.log("Joined Urban Steps Challenge")}
+              />
+            </div>
+          </div>
+        </main>
 
-          <EventCard
-            title="Urban Steps Challenge"
-            location="Aarhus City Hall Square"
-            date={{ month: "OCT", day: "24" }}
-            imageUrl={runnerImage}
-            onJoinEvent={() => console.log("Joined Urban Steps Challenge")}
-          />
-        </div>
       </div>
-
-    </main>
-
       <NavBar />
     </>
   );
