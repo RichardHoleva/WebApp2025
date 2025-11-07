@@ -1,4 +1,3 @@
-// Calendar.jsx
 import { useState } from "react";
 import "../styles/calendar.css";
 
@@ -6,7 +5,6 @@ export default function Calendar() {
   const [currentWeekStart, setCurrentWeekStart] = useState(getMonday(new Date()));
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
 
   function getMonday(date) {
     const day = date.getDay();
@@ -52,6 +50,10 @@ export default function Calendar() {
     return 1 + Math.round(((tempDate - week1) / 86400000 - 3 + ((week1.getDay() + 6) % 7)) / 7);
   }
 
+  function handleToggle() {
+    setIsCollapsed(!isCollapsed);
+  }
+
   const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const daysInWeek = [];
   for (let i = 0; i < 7; i++) {
@@ -59,18 +61,6 @@ export default function Calendar() {
   }
 
   const weekNumber = getWeekNumber(currentWeekStart);
-
-  function handleToggle() {
-    if (!isCollapsed) {
-      setIsClosing(true);
-      setTimeout(() => {
-        setIsCollapsed(true);
-        setIsClosing(false);
-      }, 300);
-    } else {
-      setIsCollapsed(false);
-    }
-  }
 
   return (
     <div className={`calendar ${isCollapsed ? 'collapsed' : ''}`}>
@@ -89,8 +79,8 @@ export default function Calendar() {
         </button>
       </div>
 
-      {(!isCollapsed || isClosing) && (
-        <div className={`calendar-days ${isClosing ? 'closing' : ''}`}>
+      <div className={`calendar-days-container ${isCollapsed ? 'collapsed' : 'expanded'}`}>
+        <div className="calendar-days">
           {daysInWeek.map((day, index) => (
             <div key={index} className="calendar-day-wrapper">
               <button
@@ -104,7 +94,7 @@ export default function Calendar() {
             </div>
           ))}
         </div>
-      )}
+      </div>
 
       <button 
         className="calendar-toggle" 

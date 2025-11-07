@@ -20,7 +20,6 @@ export default function Dashboard() {
       <Calendar />
       <div>
         <header>
-          <h2>Welcome, {user?.email ?? 'runner'}</h2>
           <button onClick={() => signOut(auth)}>Sign out</button>
         </header>
 
