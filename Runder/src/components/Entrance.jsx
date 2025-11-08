@@ -14,7 +14,6 @@ const Entrance = () => {
 
   return (
     <div className="entrance-container">
-      <h2>Select Entrance Type</h2>
       <div className="button-group">
         <button
           className={`entrance-btn ${entranceType === 'paid' ? 'active' : ''}`}

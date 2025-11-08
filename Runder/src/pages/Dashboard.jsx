@@ -44,14 +44,6 @@ export default function Dashboard() {
                 onJoinEvent={() => console.log("Joined Urban Steps Challenge")}
               />
               
-              <EventCard
-                title="Urban Steps Challenge"
-                location="Aarhus City Hall Square"
-                date={{ month: "NOV", day: "12" }}
-                imageUrl={runnerImage}
-                onJoinEvent={() => console.log("Joined Urban Steps Challenge")}
-              />
-
               
               
             </div>

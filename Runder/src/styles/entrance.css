@@ -1,7 +1,7 @@
 .entrance-container {
   max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 0;
+  padding: 0;
 }
 
 .entrance-container h2 {
@@ -19,21 +19,23 @@
   flex: 1;
   padding: 12px 20px;
   font-size: 16px;
-  border: 2px solid #007bff;
-  background-color: white;
-  color: #007bff;
-  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.87);
+  border-radius: 32px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .entrance-btn:hover {
-  background-color: #f0f8ff;
+  border-color: #DAFF00;
+  background-color: rgba(218, 255, 0, 0.1);
 }
 
 .entrance-btn.active {
-  background-color: #007bff;
-  color: white;
+  background-color: #DAFF00;
+  color: #201E1F;
+  border-color: #DAFF00;
 }
 
 .price-input-container {
@@ -46,19 +48,22 @@
 
 .price-input-container label {
   font-weight: 500;
+  color: rgba(255, 255, 255, 0.87);
 }
 
 .price-input-container input {
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   font-size: 14px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.87);
 }
 
 .price-input-container input:focus {
+  border-color: #DAFF00;
+  background-color: rgba(218, 255, 0, 0.05);
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
 }
 
 @keyframes slideDown {

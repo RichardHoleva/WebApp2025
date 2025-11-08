@@ -4,8 +4,8 @@
 
 }
 .dashboard {
-  padding: 20px;
   min-height: 100vh;
+  padding: 1rem 1rem 1rem;
 }
 
 .dashboard-container {
