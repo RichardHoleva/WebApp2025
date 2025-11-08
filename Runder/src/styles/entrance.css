@@ -1,0 +1,73 @@
+.entrance-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.entrance-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.entrance-btn {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.entrance-btn:hover {
+  background-color: #f0f8ff;
+}
+
+.entrance-btn.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.price-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+  animation: slideDown 0.3s ease;
+}
+
+.price-input-container label {
+  font-weight: 500;
+}
+
+.price-input-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.price-input-container input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

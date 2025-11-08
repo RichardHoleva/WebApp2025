@@ -4,6 +4,7 @@ import ProgressBar from "../components/ProgressBar.jsx";
 import "../styles/generalinfo.css";
 import AddImage from "../components/AddImage.jsx";
 import InputField from "../components/inputField.jsx";
+import Entrance from "../components/Entrance.jsx";
 
 export default function CreateGeneral() {
   const [typeOfRun, setTypeOfRun] = useState("free");
@@ -12,6 +13,7 @@ export default function CreateGeneral() {
     <>
       <NavBar />
       <ProgressBar />
+      
       <div className="create-general-container">
         <div className="header">
           <h2>General Information</h2>
