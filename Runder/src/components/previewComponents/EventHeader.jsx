@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/event-header.css';
+import '../../styles/preview.css';
 
 function EventHeader({ event }) {
   return (
