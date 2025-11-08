@@ -1,0 +1,13 @@
+.not-found-container {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    }
+
+.number-404 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 144px;
+    font-weight: bold;
+    color: #DAFF00;
+    }

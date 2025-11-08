@@ -6,6 +6,7 @@ import Register from './pages/Register.jsx';
 import OnBoarding from './pages/OnBoarding.jsx';
 import CreateGeneral from './pages/Create-General.jsx';
 import Profile from './pages/Profile.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
   return (
@@ -23,7 +24,7 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
         </Route>
         
-        <Route path="*" element={<div>Not found</div>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
