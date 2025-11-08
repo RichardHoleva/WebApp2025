@@ -1,16 +1,17 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Protected from './auth/Protected';
-import Login from './pages/Login.jsx';
-import Dashboard from './pages/Dashboard.jsx';
-import Register from './pages/Register.jsx';
-import OnBoarding from './pages/OnBoarding.jsx';
-import CreateGeneral from './pages/Create-General.jsx';
-import Profile from './pages/Profile.jsx';
-import NotFound from './pages/NotFound.jsx';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Protected from "./auth/Protected";
+import Login from "./pages/Login.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import Register from "./pages/Register.jsx";
+import OnBoarding from "./pages/OnBoarding.jsx";
+import CreateGeneral from "./pages/Create-General.jsx";
+import Profile from "./pages/Profile.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import EventPreview from "./pages/EventPreview.jsx";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         {/* Public routes - no authentication required */}
         <Route path="/" element={<OnBoarding />} />
@@ -24,8 +25,9 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
         </Route>
         
+        <Route path="/event-preview" element={<EventPreview />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
