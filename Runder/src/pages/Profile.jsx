@@ -1,34 +1,36 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { auth } from '../lib/firebase';
-import { signOut } from 'firebase/auth';
-import '../styles/profile.css';
-import NavBar from '../components/NavBar';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../auth/AuthProvider' // adjust path
+import '../styles/profile.css'
+import NavBar from '../components/NavBar'
 
-function Profile() {
-  const navigate = useNavigate();
+export default function Profile() {
+  const navigate = useNavigate()
+  const { signOut } = useAuth()
+  const [busy, setBusy] = useState(false)
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth);
-      navigate('/login');
+      setBusy(true)
+      await signOut()              // Supabase sign out from context
+      navigate('/login', { replace: true })
     } catch (error) {
-      console.error('Error signing out:', error);
+      console.error('Error signing out:', error)
+    } finally {
+      setBusy(false)
     }
-  };
+  }
 
   return (
     <>
       <NavBar />
       <div className="profile-container">
         <div className="profile-content">
-          <button className="sign-out-button" onClick={handleSignOut}>
-            Sign Out
+          <button className="sign-out-button" onClick={handleSignOut} disabled={busy}>
+            {busy ? 'Signing out…' : 'Sign Out'}
           </button>
+        </div>
       </div>
-    </div>
     </>
-  );
+  )
 }
-
-export default Profile;

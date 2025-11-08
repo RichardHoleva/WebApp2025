@@ -1,48 +1,70 @@
-import { useState } from 'react';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../lib/firebase';
-import { Link, useNavigate } from 'react-router-dom';
-import googleIcon from '../assets/google.png';
-import facebookIcon from '../assets/facebook.png';
-import appleIcon from '../assets/apple.png';
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { supabase } from '../lib/supabase'
+import googleIcon from '../assets/google.png'
+import facebookIcon from '../assets/facebook.png'
+import appleIcon from '../assets/apple.png'
 
 export default function Register() {
-  const nav = useNavigate();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [pw, setPw] = useState('');
-  const [confirmPw, setConfirmPw] = useState('');
-  const [err, setErr] = useState(null);
-  const [busy, setBusy] = useState(false);
-  
+  const nav = useNavigate()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [pw, setPw] = useState('')
+  const [confirmPw, setConfirmPw] = useState('')
+  const [err, setErr] = useState(null)
+  const [busy, setBusy] = useState(false)
 
   const fieldStyle = {
     display: 'block',
     width: '100%',
-    marginBottom: 10 ,
-    padding: '0.6em 1.2em', 
-    boxSizing: 'border-box'
-  };
+    marginBottom: 10,
+    padding: '0.6em 1.2em',
+    boxSizing: 'border-box',
+  }
 
   async function onRegister(e) {
-    e.preventDefault();
-    setBusy(true); setErr(null);
+    e.preventDefault()
+    setBusy(true); setErr(null)
 
     if (pw !== confirmPw) {
-      setErr('Passwords do not match');
-      setBusy(false);
-      return;
+      setErr('Passwords do not match')
+      setBusy(false)
+      return
     }
 
     try {
-      const cred = await createUserWithEmailAndPassword(auth, email, pw);
-      if (name) await updateProfile(cred.user, { displayName: name });
-      nav('/dashboard', { replace: true });
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password: pw,
+        options: {
+          data: { full_name: name }, // user metadata (like Firebase displayName)
+          emailRedirectTo: window.location.origin + '/login', // adjust if you want
+        },
+      })
+      if (error) throw error
+
+      // If email confirmations are disabled, a session will exist and we can go straight in.
+      // If confirmations are enabled, no session yet—send user to login or show a message.
+      if (data.session) {
+        nav('/dashboard', { replace: true })
+      } else {
+        nav('/login', { replace: true })
+      }
     } catch (e) {
-      setErr(e.message);
+      setErr(e.message || 'Registration failed')
     } finally {
-      setBusy(false);
+      setBusy(false)
     }
+  }
+
+  async function oauth(provider) {
+    setErr(null)
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: { redirectTo: window.location.origin + '/dashboard' },
+    })
+    if (error) setErr(error.message)
+    // Supabase will redirect; no further action needed here.
   }
 
   return (
@@ -52,14 +74,14 @@ export default function Register() {
         <input
           placeholder="Username"
           value={name}
-          onChange={e=>setName(e.target.value)}
+          onChange={e => setName(e.target.value)}
           style={fieldStyle}
         />
         <input
           placeholder="Email"
           type="email"
           value={email}
-          onChange={e=>setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
           required
           style={fieldStyle}
         />
@@ -67,20 +89,19 @@ export default function Register() {
           placeholder="Password (min 6)"
           type="password"
           value={pw}
-          onChange={e=>setPw(e.target.value)}
+          onChange={e => setPw(e.target.value)}
           required
           style={fieldStyle}
         />
-
         <input
           placeholder="Confirm Password"
           type="password"
           value={confirmPw}
-          onChange={e=>setConfirmPw(e.target.value)}
+          onChange={e => setConfirmPw(e.target.value)}
           required
           style={fieldStyle}
         />
-        {err && <p style={{ color:'crimson' }}>{err}</p>}
+        {err && <p style={{ color: 'crimson' }}>{err}</p>}
         <button
           disabled={busy}
           type="submit"
@@ -91,19 +112,35 @@ export default function Register() {
       </form>
 
       <p style={{ marginTop: 12 }}>
-        Already have an account? <Link to="/login"> Log in</Link>
+        Already have an account? <Link to="/login">Log in</Link>
       </p>
 
       <div className="social-login">
-          <p className='terms-of-use'>By registering, you agree to our <b>Terms of Use</b> and <b>Privacy Policy</b>.</p>
-          <p className="social-login-label">sign in with</p>
-              <div className="social-buttons">
-                  <img src={googleIcon} alt="Google" />
-                  <img src={appleIcon} alt="Apple" />
-                  <img src={facebookIcon} alt="Facebook" />
-              </div>
+        <p className="terms-of-use">
+          By registering, you agree to our <b>Terms of Use</b> and <b>Privacy Policy</b>.
+        </p>
+        <p className="social-login-label">sign in with</p>
+        <div className="social-buttons">
+          <img
+            src={googleIcon}
+            alt="Google"
+            onClick={() => oauth('google')}
+            style={{ cursor: 'pointer' }}
+          />
+          <img
+            src={appleIcon}
+            alt="Apple"
+            onClick={() => oauth('apple')}
+            style={{ cursor: 'pointer' }}
+          />
+          <img
+            src={facebookIcon}
+            alt="Facebook"
+            onClick={() => oauth('facebook')}
+            style={{ cursor: 'pointer' }}
+          />
+        </div>
       </div>
-
     </div>
-  );
+  )
 }

@@ -18,7 +18,7 @@ export default function EventCard({ title, location, date, imageUrl, onJoinEvent
         </div>
 
         <button className="join-button" onClick={onJoinEvent}>
-          Edit Event
+          Join Event
         </button>
       </div>
 
