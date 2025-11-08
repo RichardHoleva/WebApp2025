@@ -16,9 +16,9 @@ export default function CreateGeneral() {
   };
 
   const handleConfirm = () => {
-    // Add your event creation logic here
+    
     console.log('Event confirmed');
-    navigate('/dashboard'); // or wherever you want to navigate after confirmation
+    navigate('/dashboard');
   };
 
   return (
