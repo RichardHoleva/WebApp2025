@@ -18,18 +18,15 @@ export default function Dashboard() {
   return (
     <>
       <Calendar />
-      <Filter />
       <div>
-
+        
 
       
-        <section>
-          <AddRunInput title="New run" onAdd={handleAdd} />
-        </section>
-        
+          
         <main className="dashboard">
           <div className="dashboard-container">
-
+            <Filter />
+            <AddRunInput title="New run" onAdd={handleAdd} />
             <div className="events-list">
               <EventCard
                 title="Bay Breeze Dash"

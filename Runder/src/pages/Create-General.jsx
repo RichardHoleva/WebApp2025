@@ -32,6 +32,11 @@ export default function CreateGeneral() {
           multiline={true}
           rows={6}
         />
+        <div className="section-header-description">
+          <h3 className="section-title">Type of Run</h3>
+        </div>
+        
+
       </div>
     </>
   );
