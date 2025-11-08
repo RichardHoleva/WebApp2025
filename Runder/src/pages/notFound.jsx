@@ -5,7 +5,6 @@ import '../styles/notFound.css';
 export default function NotFound() {
   return (
     <>
-
       <div className="number-404">
         <p >404</p>
       </div>

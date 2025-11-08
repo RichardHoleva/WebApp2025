@@ -18,11 +18,8 @@ export default function Dashboard() {
   return (
     <>
       <Calendar />
-      <div>
-        
-
       
-          
+      <div>
         <main className="dashboard">
           <div className="dashboard-container">
             <Filter />
@@ -44,12 +41,9 @@ export default function Dashboard() {
                 onJoinEvent={() => console.log("Joined Urban Steps Challenge")}
               />
               
-              
-              
             </div>
           </div>
         </main>
-
       </div>
       <NavBar />
     </>
