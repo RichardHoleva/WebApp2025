@@ -1,5 +1,7 @@
 :root {
     background-image: none ;
+    background-color: black;
+
 }
 .dashboard {
   padding: 20px;
