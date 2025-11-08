@@ -16,13 +16,17 @@ export default function CreateGeneral() {
         <div className="header">
           <h2>General Information</h2>
           <button className="close-btn">×</button>
+          
         </div>
         <AddImage />
         <div className="section-header">
           <h3 className="section-title">Event Title</h3>
           <span className="required-badge">Required</span>
         </div>
-        <InputField placeholder="Enter event title" />
+        <InputField 
+        placeholder="Enter event title" 
+        multiline={false}
+        rows={3}/>
         <div className="section-header-description">
           <h3 className="section-title">Event Description</h3>
           <span className="required-badge">Optional</span>

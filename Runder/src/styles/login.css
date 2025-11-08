@@ -18,7 +18,7 @@
 }
 
 .login-container .error-message {
-  color: crimson;
+  color: rgb(0, 0, 0);
   margin: 8px 0;
 }
 
