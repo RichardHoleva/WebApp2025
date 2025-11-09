@@ -65,18 +65,24 @@
 }
 
 .event-info h1 {
-  font-size: 28px;
-  font-weight: bold;
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: 2rem;
   margin-bottom: 15px;
 }
 
 .event-meta {
   display: flex;
+  font-family: var(--body);
   flex-direction: column;
   gap: 8px;
   margin-bottom: 15px;
-  color: #b0b0b0;
+  color: var(--white);
   font-size: 14px;
+}
+
+.event-meta i {
+    color: var(--yellow);
 }
 
 .event-meta span {
@@ -409,13 +415,3 @@
   box-shadow: 0 6px 25px rgba(212, 255, 0, 0.4);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .event-info h1 {
-    font-size: 24px;
-  }
-  
-  .event-image {
-    height: 250px;
-  }
-}

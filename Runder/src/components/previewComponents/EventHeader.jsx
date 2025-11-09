@@ -12,8 +12,8 @@ function EventHeader({ event }) {
       <div className="event-info">
         <h1>{event.title}</h1>
         <div className="event-meta">
-          <span className="date">📅 {event.date}</span>
-          <span className="location">📍 {event.location}</span>
+          <span className="date"><i class="fa-regular fa-calendar"></i> {event.date}</span>
+          <span className="location"><i class="fa-solid fa-location-dot"></i><b>Meet Point</b> - {event.location}</span>
         </div>
         <div className="event-stats">
           <span className="difficulty">{event.difficulty}</span>

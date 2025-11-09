@@ -17,7 +17,7 @@ function EventPreview() {
     setEvent({
       title: 'Family Run 2025',
       date: '22 Oct, 2025, 19:30',
-      location: 'Meet Point - Forstbotanisk Have',
+      location: 'Forstbotanisk Have',
       image: familyRunImage,
       difficulty: 'Beginner',
       participants: 23,
