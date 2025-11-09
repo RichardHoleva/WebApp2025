@@ -8,7 +8,7 @@ export default function Login() {
   return (
     <div className="login">
       <div className="login-container">
-        <h1>Welcome back</h1>
+        <h1>Welcome back!</h1>
         <LoginFields/>
 
       <div className="social-login">
