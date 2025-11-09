@@ -425,3 +425,21 @@
   box-shadow: 0 6px 25px rgba(212, 255, 0, 0.4);
 }
 
+
+/* Playlist Section */
+
+.playlist-section {
+  display: flex;
+  flex-direction: column;
+  grid-auto-flow: 1rem;
+}
+
+.playlist-section h3 {
+  font-size: 1.5rem;
+  color: var(--white);
+  font-family: var(--heading);
+}
+
+.playlist-section i {
+  color: var(--yellow);
+}
