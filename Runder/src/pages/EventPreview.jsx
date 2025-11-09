@@ -5,10 +5,11 @@ import OrganizerCard from '../components/previewComponents/OrganizerCard';
 import AboutSection from '../components/previewComponents/AboutSection';
 import DistanceSection from '../components/previewComponents/DistanceSection';
 import BuddySection from '../components/previewComponents/BuddySection';
+import PlaylistSection from '../components/previewComponents/PlaylistSection';
+import EventGallery from '../components/previewComponents/EventGallery';
 import familyRunImage from '../assets/familyrun.png';
 import richardholeva from '../assets/richardholeva.png'
 import BuyTicket from '../components/previewComponents/BuyTicket';
-import PlaylistSection from '../components/previewComponents/PlaylistSection';
 import '../styles/preview.css';
 
 function EventPreview() {
@@ -33,7 +34,8 @@ function EventPreview() {
       organizer: {
         name: 'Richard Holeva',
         avatar: richardholeva,
-      }
+      },
+      galleryImages: [] // Empty array will use default placeholder images
     });
   }, [eventId]);
 
@@ -47,9 +49,7 @@ function EventPreview() {
       <DistanceSection distance={event.distance} />
       <BuddySection />
       <PlaylistSection playlistUrl={event.playlistUrl} />
-
-      {/* Add more sections: Playlist, Gallery */}
-
+      <EventGallery images={event.galleryImages} />
       <BuyTicket/>
     </div>
   );
