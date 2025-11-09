@@ -16,9 +16,9 @@ function EventHeader({ event }) {
           <span className="location"><i class="fa-solid fa-location-dot"></i><b>Meet Point</b> - {event.location}</span>
         </div>
         <div className="event-stats">
-          <span className="difficulty">{event.difficulty}</span>
-          <span className="participants">👥 {event.participants} Participants</span>
-          <span className="privacy">{event.privacy}</span>
+          <span className="difficulty"><i class="fa-solid fa-chart-simple"></i>{event.difficulty}</span>
+          <span className="participants"><i class="fa-solid fa-user-group"></i>{event.participants} Participants</span>
+          <span className="privacy"><i class="fa-solid fa-lock"></i>{event.privacy}</span>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ function OrganizerCard({ organizer }) {
         <span className="organizer-label">Organizator</span>
         <span className="organizer-name">{organizer.name}</span>
       </div>
-      <button className="message-btn">💬</button>
+      <button className="message-btn"><i class="fa-solid fa-message"></i></button>
     </div>
   );
 }
