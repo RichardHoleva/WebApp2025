@@ -6,7 +6,7 @@ import Calendar from '../components/Calendar.jsx';
 import Filter from '../components/Filter.jsx';
 import '../styles/dashboard.css';
 import EventCard from '../components/event-card';
-import { getAllEvents, getUserEvents, getJoinedEvents, joinEvent } from '../lib/events.js';
+import { getAllEvents, getUserEvents, getJoinedEvents, joinEvent, deleteEvent } from '../lib/events.js';
 import runnerImage from '../assets/runner.png';
 
 export default function Dashboard() {
@@ -58,6 +58,22 @@ export default function Dashboard() {
     }
   };
 
+    const handleDeleteEvent = async (eventId) => {
+    if (window.confirm('Are you sure you want to delete this event?')) {
+      try {
+        const result = await deleteEvent(eventId);
+        if (result.success) {
+          console.log('Successfully deleted event');
+          loadEvents(); // Reload events to update the list
+        } else {
+          alert(`Error deleting event: ${result.error}`);
+        }
+      } catch (error) {
+        alert(`Error deleting event: ${error.message}`);
+      }
+    }
+  };
+
   const formatEventForCard = (event) => {
     const eventDate = new Date(event.date);
     const month = eventDate.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
@@ -99,12 +115,15 @@ export default function Dashboard() {
                     return (
                       <EventCard
                         key={event.id}
+                        id={event.id}
                         title={formattedEvent.title}
                         location={formattedEvent.location}
                         date={formattedEvent.date}
                         imageUrl={formattedEvent.imageUrl}
                         description={formattedEvent.description}
                         onJoinEvent={() => handleJoinEvent(event.id)}
+                        onDeleteEvent={handleDeleteEvent}
+                        showDeleteButton={filterType === 'created'}
                       />
                     );
                   })

@@ -57,7 +57,7 @@
 
 .preview-event-image {
   width: 100%;
-  height: 300px;
+  height: 200px;
   object-fit: cover;
 }
 
@@ -274,10 +274,7 @@
   transition: all 0.3s;
 }
 
-.join-buddy-btn:hover {
-  border-color: #d4ff00;
-  color: #d4ff00;
-}
+
 
 /* Playlist Section */
 .playlist-section {
@@ -392,9 +389,6 @@
   transition: all 0.3s;
 }
 
-.add-image-btn:hover {
-  border-color: #d4ff00;
-}
 
 .add-icon {
   font-size: 40px;
@@ -419,11 +413,6 @@
   transition: all 0.3s;
 }
 
-.buy-ticket-btn:hover {
-  background-color: #c0e600;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(212, 255, 0, 0.4);
-}
 
 
 /* Playlist Section */

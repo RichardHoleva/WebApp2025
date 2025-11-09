@@ -3,7 +3,7 @@ import runnerImage from '../assets/runner.png';
 import '../styles/event-card.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function EventCard({ id, title, location, date, imageUrl, onJoinEvent, description }) {
+export default function EventCard({ id, title, location, date, imageUrl, onJoinEvent, description, onDeleteEvent, showDeleteButton = false }) {
   const navigate = useNavigate();
 
   return (
@@ -14,6 +14,12 @@ export default function EventCard({ id, title, location, date, imageUrl, onJoinE
           alt={title}
           className="event-image"
         />
+
+        {showDeleteButton && (
+          <button className="delete-button" onClick={() => onDeleteEvent(id)}>
+            ×
+          </button>
+        )}
 
         <div className="event-date">
           <span className="event-month">{date.month}</span>

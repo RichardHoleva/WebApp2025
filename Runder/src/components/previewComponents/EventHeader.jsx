@@ -15,7 +15,7 @@ function EventHeader({ event }) {
         <button className="back-btn" onClick={handleBackClick}>←</button>
         <button className="share-btn"><i class="fa-solid fa-share-nodes"></i></button>
       </div>
-      <img src={event.image} alt={event.title} className="event-image" />
+      <img src={event.image} alt={event.title} className="preview-event-image" />
       <div className="event-info">
         <h1>{event.title}</h1>
         <div className="event-meta">
