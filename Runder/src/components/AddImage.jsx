@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/addimage.css";
 
-export default function AddImage() {
+export default function AddImage({ onImageSelect }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
@@ -14,12 +14,20 @@ export default function AddImage() {
         setPreviewUrl(reader.result);
       };
       reader.readAsDataURL(file);
+      
+      // Call parent callback with the actual file
+      if (onImageSelect) {
+        onImageSelect(file);
+      }
     }
   };
 
   const handleRemoveImage = () => {
     setSelectedImage(null);
     setPreviewUrl(null);
+    if (onImageSelect) {
+      onImageSelect(null);
+    }
   };
 
   return (

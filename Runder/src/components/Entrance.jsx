@@ -1,16 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/entrance.css';
 
-const Entrance = () => {
-  const [entranceType, setEntranceType] = useState('');
+const Entrance = ({ setTypeOfRun, onPriceChange }) => {
+  const [entranceType, setEntranceType] = useState('free');
   const [ticketPrice, setTicketPrice] = useState('');
 
   const handleEntranceTypeChange = (type) => {
     setEntranceType(type);
+    if (setTypeOfRun) {
+      setTypeOfRun(type);
+    }
+    
     if (type === 'free') {
       setTicketPrice('');
+      if (onPriceChange) {
+        onPriceChange('');
+      }
     }
   };
+
+  const handlePriceChange = (price) => {
+    setTicketPrice(price);
+    if (onPriceChange) {
+      onPriceChange(price);
+    }
+  };
+
+  useEffect(() => {
+    // Initialize with free
+    if (setTypeOfRun) {
+      setTypeOfRun('free');
+    }
+  }, [setTypeOfRun]);
 
   return (
     <div className="entrance-container">
@@ -36,7 +57,7 @@ const Entrance = () => {
             type="number"
             id="ticketPrice"
             value={ticketPrice}
-            onChange={(e) => setTicketPrice(e.target.value)}
+            onChange={(e) => handlePriceChange(e.target.value)}
             placeholder="Enter price"
             min="0"
             step="0.01"

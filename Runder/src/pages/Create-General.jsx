@@ -7,28 +7,63 @@ import "../styles/preview.css";
 import AddImage from "../components/AddImage.jsx";
 import InputField from "../components/inputField.jsx";
 import Entrance from "../components/Entrance.jsx";
+import { createEvent } from "../lib/events.js";
 
 export default function CreateGeneral() {
   const navigate = useNavigate();
 
-  const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [typeOfRun, setTypeOfRun] = useState("free");
+  const [ticketPrice, setTicketPrice] = useState("");
+  const [isCreating, setIsCreating] = useState(false);
 
   const handleClose = () => navigate("/dashboard");
-  const handleConfirm = () => {
-    // navigate to the preview page and pass current form data via location state
-    navigate("/event-preview", {
-      state: { image, title, description, location, date, time, typeOfRun },
-    });
+
+  const handleConfirm = async () => {
+    if (!title.trim() || !location.trim() || !date) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    setIsCreating(true);
+
+    const eventData = {
+      title: title.trim(),
+      description: description.trim(),
+      location: location.trim(),
+      date,
+      time,
+      typeOfRun,
+      ticketPrice: typeOfRun === 'paid' ? parseFloat(ticketPrice) || 0 : null
+    };
+
+    try {
+      const result = await createEvent(eventData, imageFile);
+      
+      if (result.success) {
+        alert("Event created successfully!");
+        navigate("/dashboard");
+      } else {
+        alert(`Error creating event: ${result.error}`);
+      }
+    } catch (error) {
+      alert(`Error creating event: ${error.message}`);
+    } finally {
+      setIsCreating(false);
+    }
   };
 
   const handleImageChange = (file) => {
-    if (file) setImage(URL.createObjectURL(file));
+    setImageFile(file);
+  };
+
+  const handlePriceChange = (price) => {
+    setTicketPrice(price);
   };
 
   return (
@@ -43,7 +78,6 @@ export default function CreateGeneral() {
         </div>
 
         <div className="content-wrapper">
-          {/* ==== Left: Form ==== */}
           <div className="form-section">
             <AddImage onImageSelect={handleImageChange} />
 
@@ -72,7 +106,10 @@ export default function CreateGeneral() {
             <div className="section-header-description">
               <h3 className="section-title">Type of Run</h3>
             </div>
-            <Entrance setTypeOfRun={setTypeOfRun} /> {/* make sure Entrance calls props.setTypeOfRun("paid"/"free") */}
+            <Entrance 
+              setTypeOfRun={setTypeOfRun} 
+              onPriceChange={handlePriceChange}
+            />
 
             <div className="section-header">
               <h3 className="section-title">Location</h3>
@@ -109,12 +146,14 @@ export default function CreateGeneral() {
               </div>
             </div>
 
-            <button className="confirm-btn" onClick={handleConfirm}>
-              Confirm Event
+            <button 
+              className="confirm-btn" 
+              onClick={handleConfirm}
+              disabled={isCreating}
+            >
+              {isCreating ? "Creating Event..." : "Confirm Event"}
             </button>
           </div>
-
-          {/* Live preview removed */}
         </div>
       </div>
     </div>
