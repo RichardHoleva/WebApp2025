@@ -72,12 +72,14 @@ export default function OnboardingSlider({ slides }) {
       </div>
       
       <div className="onboarding-buttons">
-        <button onClick={() => nav('/register')} className="btn-join">
-          Join us
-        </button>
-        <button onClick={() => nav('/login')} className="btn-signin">
+        <button onClick={() => nav('/login')} className="btn-join">
           Sign in
         </button>
+        
+        <button onClick={() => nav('/register')} className="btn-signin">
+          Join us
+        </button>
+
       </div>
     </div>
   );

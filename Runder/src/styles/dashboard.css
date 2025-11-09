@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
 :root {
     background-image: none ;
     background-color: black;
+    --heading : "Montserrat", sans-serif;
+    --body : "Lato", sans-serif;
+
 
 }
 .dashboard {
@@ -59,18 +66,21 @@
 .calendar-title {
   text-align: center;
   flex: 1;
+  font-family: var(--heading);
 }
 
 .calendar-week {
   font-weight: bold;
   letter-spacing: 0.5px;
   font-size: 20px;
+  font-family: var(--heading);
 }
 
 .calendar-range {
   font-size: 12px;
   color: #9aa0a6;
   letter-spacing: 0.12em;
+  font-family: var(--body);
 }
 
 .calendar-arrow {
@@ -143,6 +153,7 @@
   border-radius: 999px;
   padding: 8px;
   cursor: pointer;
+  font-family: var(--body);
 }
 
 .calendar-day:focus {
@@ -231,6 +242,7 @@
   color: #fff;
   font-size: 13px;
   cursor: pointer;
+  font-family: var(--body);
 }
 
 .filter-btn.active {
@@ -296,6 +308,7 @@
   font-size: 25px;
   font-weight: 500;
   line-height: 1;
+  font-family: var(--heading);
 }
 
 /* Run create card Styles finish */
@@ -391,6 +404,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--body);
 }
 
 .event-info {
@@ -402,12 +416,14 @@
   margin: 5px -10px;
   font-size: 14px;
   font-weight: bold;
+  font-family: var(--heading);
 }
 
 .event-info p {
   color: #d9d9d9d0;
   font-size: 0.9rem;
   margin: 5px -10px;
+  font-family: var(--body);
 }
 
 .events-list {
