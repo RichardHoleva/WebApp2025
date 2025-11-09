@@ -14,14 +14,30 @@ export async function createEvent(eventData, imageFile = null) {
       imageUrl = await createSignedUrl(imagePath, 31536000, 'run-event')
     }
 
+    // Parse and format the date properly
+    let startsAt
+    if (eventData.date) {
+      // Create a proper Date object from the input
+      const date = new Date(eventData.date)
+      const time = eventData.time || '00:00'
+      const [hours, minutes] = time.split(':')
+      
+      // Set the time on the date
+      date.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0, 0)
+      
+      // Convert to ISO string
+      startsAt = date.toISOString()
+    } else {
+      throw new Error('Date is required')
+    }
+
     // Create event in database - using user_id instead of created_by
     const { data, error } = await supabase
       .from('events')
       .insert({
         title: eventData.title,
-        starts_at: `${eventData.date}T${eventData.time || '00:00'}:00.000Z`, // Combine date and time
-        user_id: user.id, // Changed from created_by to user_id
-        // Add other fields if your table has them
+        starts_at: startsAt,
+        user_id: user.id,
         description: eventData.description || null,
         location: eventData.location,
         type_of_run: eventData.typeOfRun || 'free',
