@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/filter.css';
+import '../../styles/dashboard.css';
 
 function Filter({ onFilterChange }) {
   const [selected, setSelected] = useState('created');

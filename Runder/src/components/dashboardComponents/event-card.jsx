@@ -1,6 +1,6 @@
 import React from 'react';
-import runnerImage from '../assets/runner.png';
-import '../styles/event-card.css';
+import runnerImage from '../../assets/runner.png';
+import '../../styles/dashboard.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function EventCard({ id, title, location, date, imageUrl, onJoinEvent, description, onDeleteEvent, showDeleteButton = false }) {

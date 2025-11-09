@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/calendar.css";
+import "../../styles/dashboard.css";
 
 export default function Calendar() {
   const [currentWeekStart, setCurrentWeekStart] = useState(getMonday(new Date()));
