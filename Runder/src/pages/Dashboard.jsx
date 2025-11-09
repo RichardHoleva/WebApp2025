@@ -6,14 +6,14 @@ import Calendar from '../components/Calendar.jsx';
 import Filter from '../components/Filter.jsx';
 import '../styles/dashboard.css';
 import EventCard from '../components/event-card';
-import { getAllEvents, getUserEvents, joinEvent } from '../lib/events.js';
+import { getAllEvents, getUserEvents, getJoinedEvents, joinEvent } from '../lib/events.js';
 import runnerImage from '../assets/runner.png';
 
 export default function Dashboard() {
   const { user } = useAuth();
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filterType, setFilterType] = useState('all'); // 'all', 'created', 'joined'
+  const [filterType, setFilterType] = useState('created'); // 'all', 'created', 'joined'
 
   useEffect(() => {
     loadEvents();
@@ -25,6 +25,8 @@ export default function Dashboard() {
       let result;
       if (filterType === 'created') {
         result = await getUserEvents();
+      } else if (filterType === 'joined') {
+        result = await getJoinedEvents();
       } else {
         result = await getAllEvents();
       }

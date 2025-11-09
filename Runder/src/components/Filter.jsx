@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/filter.css';
 
 function Filter({ onFilterChange }) {
-  const [selected, setSelected] = useState('all');
+  const [selected, setSelected] = useState('created');
+
+  // Set initial filter on component mount
+  useEffect(() => {
+    if (onFilterChange) {
+      onFilterChange('created');
+    }
+  }, [onFilterChange]);
 
   const handleFilterChange = (filterType) => {
     setSelected(filterType);

@@ -24,6 +24,7 @@ export default function EventCard({ id, title, location, date, imageUrl, onJoinE
           Join Event
         </button>
       </div>
+        
 
       <div className="event-info">
         <h3>{title}</h3>

@@ -77,6 +77,26 @@ export async function getAllEvents() {
   }
 }
 
+export async function getJoinedEvents() {
+  try {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) throw new Error('User not authenticated')
+
+    const { data, error } = await supabase
+      .from('events')
+      .select('*')
+      .contains('participants', [user.id]) // Filter events where user is in participants array
+      .order('starts_at', { ascending: true })
+
+    if (error) throw error
+
+    return { success: true, events: data || [] }
+  } catch (error) {
+    console.error('Error getting joined events:', error)
+    return { success: false, error: error.message }
+  }
+}
+
 export async function joinEvent(eventId) {
   try {
     const { data: { user } } = await supabase.auth.getUser()
