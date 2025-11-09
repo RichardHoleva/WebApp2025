@@ -1,8 +1,11 @@
 import React from 'react';
 import runnerImage from '../assets/runner.png';
 import '../styles/event-card.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function EventCard({ title, location, date, imageUrl, onJoinEvent, description }) {
+export default function EventCard({ id, title, location, date, imageUrl, onJoinEvent, description }) {
+  const navigate = useNavigate();
+
   return (
     <div className="event-card">
       <div className="event-image-container">
@@ -16,8 +19,8 @@ export default function EventCard({ title, location, date, imageUrl, onJoinEvent
           <span className="event-month">{date.month}</span>
           <span className="event-day">{date.day}</span>
         </div>
-
-        <button className="join-button" onClick={onJoinEvent}>
+        
+        <button className="join-button" onClick={() => navigate(`/event/${id}`)}>
           Join Event
         </button>
       </div>

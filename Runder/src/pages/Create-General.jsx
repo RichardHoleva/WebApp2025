@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar.jsx";
 import ProgressBar from "../components/ProgressBar.jsx";
 import "../styles/generalinfo.css";
-import "../styles/preview.css";
 import AddImage from "../components/AddImage.jsx";
 import InputField from "../components/inputField.jsx";
 import Entrance from "../components/Entrance.jsx";

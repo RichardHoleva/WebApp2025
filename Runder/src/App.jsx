@@ -1,6 +1,5 @@
-// App.jsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { AuthProvider } from './auth/AuthProvider' // make sure this path matches where you saved it
+import { AuthProvider } from './auth/AuthProvider'
 import Protected from './auth/Protected'
 import Login from './pages/Login.jsx'
 import Dashboard from './pages/Dashboard.jsx'
@@ -9,6 +8,7 @@ import OnBoarding from './pages/OnBoarding.jsx'
 import CreateGeneral from './pages/Create-General.jsx'
 import Profile from './pages/Profile.jsx'
 import NotFound from './pages/NotFound.jsx'
+import EventPreview from './pages/EventPreview.jsx'
 
 export default function App() {
   return (
@@ -25,6 +25,7 @@ export default function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/create-general" element={<CreateGeneral />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/event/:eventId" element={<EventPreview />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />

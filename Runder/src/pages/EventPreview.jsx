@@ -1,61 +1,61 @@
-import React from "react";
-import "../styles/preview.css";
-import { useLocation } from "react-router-dom";
-import NavBar from "../components/NavBar.jsx";
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import EventHeader from '../components/previewComponents/EventHeader';
+import OrganizerCard from '../components/previewComponents/OrganizerCard';
+import AboutSection from '../components/previewComponents/AboutSection';
+import familyRunImage from '../assets/familyrun.png';
+import '../styles/preview.css';
 
-export default function EventPreview(props) {
-  const location = useLocation();
-  const state = location.state || {};
+function EventPreview() {
+  const { eventId } = useParams();
+  const navigate = useNavigate();
+  const [event, setEvent] = useState(null);
 
-  // avoid redeclaring identifiers from props by using distinct names
-  const previewImage = state.image ?? props.image;
-  const previewTitle = state.title ?? props.title;
-  const previewDescription = state.description ?? props.description;
-  const previewLocation = state.location ?? props.location;
-  const previewDate = state.date ?? props.date;
-  const previewTime = state.time ?? props.time;
-  const previewTypeOfRun = state.typeOfRun ?? props.typeOfRun;
+  useEffect(() => {
+    // Fetch event data from Supabase
+    // For now, using mock data
+    setEvent({
+      title: 'Family Run 2025',
+      date: '22 Oct, 2025, 19:30',
+      location: 'Meet Point - Forstbotanisk Have',
+      image: familyRunImage,
+      difficulty: 'Beginner',
+      participants: 23,
+      privacy: 'Private',
+      distance: '10 km',
+      description: 'Family Run is a midweek reset built around movement...',
+      organizer: {
+        name: 'Richard Holeva',
+        avatar: '/path/to/avatar.jpg'
+      }
+    });
+  }, [eventId]);
+
+  if (!event) return <div>Loading...</div>;
 
   return (
-    <div className="preview-section">
-      <h3 className="preview-title">Event Preview</h3>
-
-      <div >
-        {previewImage ? (
-          <img src={previewImage} alt="Event" className="preview-image" />
-        ) : (
-          <div className="image-placeholder">No Image Selected</div>
-        )}
-
-        <h2 className="preview-event-title">
-          {previewTitle || "Your event title"}
-        </h2>
-
-        <p className="preview-description">
-          {previewDescription || "Add an event description to tell people more about it."}
-        </p>
-
-        <p className="preview-detail">
-          📍 {previewLocation || "Event location"}
-        </p>
-
-        <p className="preview-detail">
-          📅 {previewDate ? previewDate : "Select a date"}{" "}
-          {previewTime ? `at ${previewTime}` : ""}
-        </p>
-
-        <p className="preview-detail">
-          🏃 Type:{" "}
-          <span
-            className={
-              previewTypeOfRun === "paid" ? "preview-paid" : "preview-free"
-            }
-          >
-            {previewTypeOfRun === "paid" ? "Paid" : "Free"}
-          </span>
-        </p>
+    <div className="event-preview-page">
+      <EventHeader event={event} />
+      <OrganizerCard organizer={event.organizer} />
+      <AboutSection description={event.description} />
+      
+      <div className="distance-section">
+        <h3>🎯 Distance - {event.distance}</h3>
+        <p>See the route where we will be running</p>
+        <button className="open-map-btn">Open Map</button>
       </div>
-       <NavBar />
+
+      <div className="buddy-section">
+        <h3>🏃 You don't like to run alone?</h3>
+        <p>Join a buddy program where u will be matched with a person to run and motivate each other</p>
+        <button className="join-buddy-btn">Join Buddy Program</button>
+      </div>
+
+      {/* Add more sections: Playlist, Gallery */}
+
+      <button className="buy-ticket-btn">BUY TICKET 15 DKK</button>
     </div>
   );
 }
+
+export default EventPreview;

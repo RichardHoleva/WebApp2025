@@ -2,24 +2,19 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme:  dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #201E1F;
   --background-color: #201E1F;
-
   background-image: url('./assets/Vector.png') ;
-  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --accent: #DAFF00;
 }
 
 body {
   margin: 0;
-
   min-width: 320px;
   min-height: 100vh;
   height: auto;
@@ -44,10 +39,3 @@ button {
 button:hover {
   border-color:none;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-
-
