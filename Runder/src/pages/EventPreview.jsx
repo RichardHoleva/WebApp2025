@@ -18,8 +18,7 @@ function EventPreview() {
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
-    // Fetch event data from Supabase
-    // For now, using mock data
+
     setEvent({
       title: 'Family Run 2025',
       date: '22 Oct, 2025, 19:30',
@@ -35,7 +34,7 @@ function EventPreview() {
         name: 'Richard Holeva',
         avatar: richardholeva,
       },
-      galleryImages: [] // Empty array will use default placeholder images
+      galleryImages: [] 
     });
   }, [eventId]);
 

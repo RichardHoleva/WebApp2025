@@ -1,11 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/preview.css';
 
 function EventHeader({ event }) {
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <div className="event-header">
       <div className="header-actions">
-        <button className="back-btn">←</button>
+        <button className="back-btn" onClick={handleBackClick}>←</button>
         <button className="share-btn"><i class="fa-solid fa-share-nodes"></i></button>
       </div>
       <img src={event.image} alt={event.title} className="event-image" />
