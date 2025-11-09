@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar.jsx";
 import ProgressBar from "../components/ProgressBar.jsx";
 import "../styles/generalinfo.css";
-import AddImage from "../components/AddImage.jsx";
-import InputField from "../components/inputField.jsx";
-import Entrance from "../components/Entrance.jsx";
+import AddImage from "../components/CreateEventComponents/AddImage.jsx";
+import InputField from "../components/CreateEventComponents/inputField.jsx";
+import Entrance from "../components/CreateEventComponents/Entrance.jsx";
 import { createEvent } from "../lib/events.js";
 
 export default function CreateGeneral() {

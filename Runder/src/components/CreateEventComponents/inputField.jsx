@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/input.css";
+import "../../styles/generalinfo.css";
 
 export default function InputField({ placeholder, value, onChange, type = "text", multiline = false, rows = 4 }) {
   if (multiline) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/entrance.css';
+import '../../styles/generalinfo.css';
 
 const Entrance = ({ setTypeOfRun, onPriceChange }) => {
   const [entranceType, setEntranceType] = useState('free');

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/addimage.css";
+import "../../styles/generalinfo.css";
 
 export default function AddImage({ onImageSelect }) {
   const [selectedImage, setSelectedImage] = useState(null);

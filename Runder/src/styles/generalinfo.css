@@ -110,3 +110,182 @@
 .confirm-btn:active {
   transform: scale(0.98);
 }
+
+/*Add Image Styles */
+.add-image-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.upload-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 150px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.upload-content {
+  text-align: center;
+}
+
+
+.upload-box p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 16px;
+}
+
+.image-preview {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* End of Add Image Styles */
+
+/* Input Field Styles */
+.input-container {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 90%;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-family: inherit;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-field.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.input-field:focus {
+  border-color: #DAFF00;
+  background-color: rgba(218, 255, 0, 0.05);
+}
+/* End of Input Field Styles */
+
+/*Entrance */
+
+.entrance-container {
+  max-width: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+.entrance-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.entrance-btn {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.87);
+  border-radius: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.entrance-btn:hover {
+  border-color: #DAFF00;
+  background-color: rgba(218, 255, 0, 0.1);
+}
+
+.entrance-btn.active {
+  background-color: #DAFF00;
+  color: #201E1F;
+  border-color: #DAFF00;
+}
+
+.price-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+  animation: slideDown 0.3s ease;
+}
+
+.price-input-container label {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.price-input-container input {
+  padding: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.price-input-container input:focus {
+  background-color: rgba(218, 255, 0, 0.05);
+  outline: none;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
