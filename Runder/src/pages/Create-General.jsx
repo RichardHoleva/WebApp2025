@@ -8,9 +8,11 @@ import InputField from "../components/CreateEventComponents/inputField.jsx";
 import Entrance from "../components/CreateEventComponents/Entrance.jsx";
 import { createEvent } from "../lib/events.js";
 
+// page for creating a new running event
 export default function CreateGeneral() {
   const navigate = useNavigate();
 
+  // all the form data we need to collect
   const [imageFile, setImageFile] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -19,11 +21,14 @@ export default function CreateGeneral() {
   const [time, setTime] = useState("");
   const [typeOfRun, setTypeOfRun] = useState("free");
   const [ticketPrice, setTicketPrice] = useState("");
-  const [isCreating, setIsCreating] = useState(false);
+  const [isCreating, setIsCreating] = useState(false); // prevents multiple clicks
 
+  // go back to dashboard without saving
   const handleClose = () => navigate("/dashboard");
 
+  // save the event and go back to dashboard
   const handleConfirm = async () => {
+    // check if required fields are filled
     if (!title.trim() || !location.trim() || !date) {
       alert("Please fill in all required fields");
       return;
@@ -31,6 +36,7 @@ export default function CreateGeneral() {
 
     setIsCreating(true);
 
+    // prepare all event data
     const eventData = {
       title: title.trim(),
       description: description.trim(),
@@ -42,6 +48,7 @@ export default function CreateGeneral() {
     };
 
     try {
+      // try to create the event
       const result = await createEvent(eventData, imageFile);
       
       if (result.success) {
@@ -57,10 +64,12 @@ export default function CreateGeneral() {
     }
   };
 
+  // when user selects an image
   const handleImageChange = (file) => {
     setImageFile(file);
   };
 
+  // when user changes ticket price
   const handlePriceChange = (price) => {
     setTicketPrice(price);
   };
@@ -78,8 +87,10 @@ export default function CreateGeneral() {
 
         <div className="content-wrapper">
           <div className="form-section">
+            {/* image upload section */}
             <AddImage onImageSelect={handleImageChange} />
 
+            {/* event title - required */}
             <div className="section-header">
               <h3 className="section-title">Event Title</h3>
               <span className="required-badge">Required</span>
@@ -90,6 +101,7 @@ export default function CreateGeneral() {
               onChange={(e) => setTitle(e.target.value)}
             />
 
+            {/* event description - optional */}
             <div className="section-header-description">
               <h3 className="section-title">Event Description</h3>
               <span className="required-badge">Optional</span>
@@ -102,6 +114,7 @@ export default function CreateGeneral() {
               onChange={(e) => setDescription(e.target.value)}
             />
 
+            {/* free or paid event */}
             <div className="section-header-description">
               <h3 className="section-title">Type of Run</h3>
             </div>
@@ -110,6 +123,7 @@ export default function CreateGeneral() {
               onPriceChange={handlePriceChange}
             />
 
+            {/* location - required */}
             <div className="section-header">
               <h3 className="section-title">Location</h3>
               <span className="required-badge">Required</span>
@@ -120,6 +134,7 @@ export default function CreateGeneral() {
               onChange={(e) => setLocation(e.target.value)}
             />
 
+            {/* date and time section */}
             <div className="date-time-container">
               <div className="date-time-field">
                 <div className="section-header">
@@ -145,6 +160,7 @@ export default function CreateGeneral() {
               </div>
             </div>
 
+            {/* submit button */}
             <button 
               className="confirm-btn" 
               onClick={handleConfirm}

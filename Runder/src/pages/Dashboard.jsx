@@ -9,26 +9,29 @@ import EventCard from '../components/dashboardComponents/event-card.jsx';
 import { getAllEvents, getUserEvents, getJoinedEvents, joinEvent, deleteEvent } from '../lib/events.js';
 import runnerImage from '../assets/runner.png';
 
+// main dashboard page where users see all events
 export default function Dashboard() {
   const { user } = useAuth();
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filterType, setFilterType] = useState('created'); // 'all', 'created', 'joined'
+  const [filterType, setFilterType] = useState('created'); // what type of events to show
 
+  // load events when page loads or filter changes
   useEffect(() => {
     loadEvents();
   }, [filterType]);
 
+  // get events based on current filter
   const loadEvents = async () => {
     setLoading(true);
     try {
       let result;
       if (filterType === 'created') {
-        result = await getUserEvents();
+        result = await getUserEvents(); // events user created
       } else if (filterType === 'joined') {
-        result = await getJoinedEvents();
+        result = await getJoinedEvents(); // events user joined
       } else {
-        result = await getAllEvents();
+        result = await getAllEvents(); // all events
       }
       
       if (result.success) {
@@ -43,6 +46,7 @@ export default function Dashboard() {
     }
   };
 
+  // when user clicks join on an event
   const handleJoinEvent = async (eventId) => {
     try {
       const result = await joinEvent(eventId);
@@ -58,7 +62,8 @@ export default function Dashboard() {
     }
   };
 
-    const handleDeleteEvent = async (eventId) => {
+  // when user wants to delete their own event
+  const handleDeleteEvent = async (eventId) => {
     if (window.confirm('Are you sure you want to delete this event?')) {
       try {
         const result = await deleteEvent(eventId);
@@ -74,6 +79,7 @@ export default function Dashboard() {
     }
   };
 
+  // converts event data to format that EventCard needs
   const formatEventForCard = (event) => {
     const eventDate = new Date(event.date);
     const month = eventDate.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
@@ -100,6 +106,7 @@ export default function Dashboard() {
       <div>
         <main className="dashboard">
           <div className="dashboard-container">
+            {/* filter to switch between different event types */}
             <Filter onFilterChange={setFilterType} />
             <AddRunInput title="New run" />
             
@@ -110,6 +117,7 @@ export default function Dashboard() {
                 {events.length === 0 ? (
                   <p>No events found. Create your first event!</p>
                 ) : (
+                  // show all events as cards
                   events.map((event) => {
                     const formattedEvent = formatEventForCard(event);
                     return (
@@ -123,7 +131,7 @@ export default function Dashboard() {
                         description={formattedEvent.description}
                         onJoinEvent={() => handleJoinEvent(event.id)}
                         onDeleteEvent={handleDeleteEvent}
-                        showDeleteButton={filterType === 'created'}
+                        showDeleteButton={filterType === 'created'} // only show delete for user's own events
                       />
                     );
                   })

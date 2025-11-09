@@ -5,6 +5,7 @@ import googleIcon from '../assets/google.png'
 import facebookIcon from '../assets/facebook.png'
 import appleIcon from '../assets/apple.png'
 
+// registration page with form and social login options
 export default function Register() {
   const nav = useNavigate()
   const [name, setName] = useState('')
@@ -22,6 +23,7 @@ export default function Register() {
     boxSizing: 'border-box',
   }
 
+  // handles registration when form is submitted
   async function onRegister(e) {
     e.preventDefault()
     setBusy(true); setErr(null)
@@ -43,13 +45,8 @@ export default function Register() {
       })
       if (error) throw error
 
-      // If email confirmations are disabled, a session will exist and we can go straight in.
-      // If confirmations are enabled, no session yet—send user to login or show a message.
-      if (data.session) {
-        nav('/dashboard', { replace: true })
-      } else {
-        nav('/login', { replace: true })
-      }
+      // always go to dashboard after successful registration
+      nav('/dashboard', { replace: true })
     } catch (e) {
       setErr(e.message || 'Registration failed')
     } finally {
@@ -57,6 +54,7 @@ export default function Register() {
     }
   }
 
+  // social login with google, apple, facebook
   async function oauth(provider) {
     setErr(null)
     const { error } = await supabase.auth.signInWithOAuth({
@@ -64,7 +62,6 @@ export default function Register() {
       options: { redirectTo: window.location.origin + '/dashboard' },
     })
     if (error) setErr(error.message)
-    // Supabase will redirect; no further action needed here.
   }
 
   return (

@@ -3,6 +3,7 @@ import runnerImage from '../../assets/runner.png';
 import '../../styles/dashboard.css';
 import { useNavigate } from 'react-router-dom';
 
+// shows event info in a card format
 export default function EventCard({ id, title, location, date, imageUrl, onJoinEvent, description, onDeleteEvent, showDeleteButton = false }) {
   const navigate = useNavigate();
 
@@ -10,10 +11,11 @@ export default function EventCard({ id, title, location, date, imageUrl, onJoinE
     <div className="event-card">
       <div className="event-image-container">
         <img
-          src={imageUrl || runnerImage}
+          src={imageUrl || runnerImage} // use event image or default runner image
           alt={title}
           className="event-image"
         />
+
 
         {showDeleteButton && (
           <button className="delete-button" onClick={() => onDeleteEvent(id)}>
@@ -26,12 +28,13 @@ export default function EventCard({ id, title, location, date, imageUrl, onJoinE
           <span className="event-day">{date.day}</span>
         </div>
         
+
         <button className="join-button" onClick={() => navigate(`/event/${id}`)}>
           Join Event
         </button>
       </div>
         
-
+      {/* basic event info */}
       <div className="event-info">
         <h3>{title}</h3>
         <p>{location}</p>

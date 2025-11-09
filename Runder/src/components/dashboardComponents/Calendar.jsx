@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "../../styles/dashboard.css";
 
+// calendar widget that shows weekly view
 export default function Calendar() {
   const [currentWeekStart, setCurrentWeekStart] = useState(getMonday(new Date()));
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isCollapsed, setIsCollapsed] = useState(false);
 
+  // gets the monday of any week
   function getMonday(date) {
     const day = date.getDay();
     const diff = day === 0 ? -6 : 1 - day;
@@ -21,10 +23,12 @@ export default function Calendar() {
     return result;
   }
 
+  // go back one week
   function goToPreviousWeek() {
     setCurrentWeekStart(addDays(currentWeekStart, -7));
   }
 
+  // go forward one week
   function goToNextWeek() {
     setCurrentWeekStart(addDays(currentWeekStart, 7));
   }
@@ -33,6 +37,7 @@ export default function Calendar() {
     return date.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
   }
 
+  // check if date is today
   function isToday(date) {
     const today = new Date();
     return date.toDateString() === today.toDateString();
@@ -42,6 +47,7 @@ export default function Calendar() {
     return date.toDateString() === selectedDate.toDateString();
   }
 
+  // calculates what week number it is in the year
   function getWeekNumber(date) {
     const tempDate = new Date(date);
     tempDate.setHours(0, 0, 0, 0);
@@ -50,11 +56,13 @@ export default function Calendar() {
     return 1 + Math.round(((tempDate - week1) / 86400000 - 3 + ((week1.getDay() + 6) % 7)) / 7);
   }
 
+  // show/hide calendar details
   function handleToggle() {
     setIsCollapsed(!isCollapsed);
   }
 
   const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  // create array of 7 days for current week
   const daysInWeek = [];
   for (let i = 0; i < 7; i++) {
     daysInWeek.push(addDays(currentWeekStart, i));
