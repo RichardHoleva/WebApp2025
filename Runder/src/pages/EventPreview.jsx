@@ -3,8 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import EventHeader from '../components/previewComponents/EventHeader';
 import OrganizerCard from '../components/previewComponents/OrganizerCard';
 import AboutSection from '../components/previewComponents/AboutSection';
+import DistanceSection from '../components/previewComponents/DistanceSection';
+import BuddySection from '../components/previewComponents/BuddySection';
+import PlaylistSection from '../components/previewComponents/PlaylistSection';
+import EventGallery from '../components/previewComponents/EventGallery';
 import familyRunImage from '../assets/familyrun.png';
 import richardholeva from '../assets/richardholeva.png'
+import BuyTicket from '../components/previewComponents/BuyTicket';
 import '../styles/preview.css';
 
 function EventPreview() {
@@ -25,10 +30,12 @@ function EventPreview() {
       privacy: 'Private',
       distance: '10 km',
       description: 'Family Run is a midweek reset built around movement, connection, and good energy. It’s a casual, social run where everyone’s welcome — no pressure, no competition, just a chance to get outside, move your body, and share a few conversations along the way. Whether you come with friends or show up solo, you’ll find an easy pace and an even easier atmosphere. It’s about showing up, doing something good for yourself, and ending the day feeling a little lighter than when you started.',
+      playlistUrl: 'https://open.spotify.com/playlist/6FIv12d0EedHZAp9ZJvguJ',
       organizer: {
         name: 'Richard Holeva',
         avatar: richardholeva,
-      }
+      },
+      galleryImages: [] // Empty array will use default placeholder images
     });
   }, [eventId]);
 
@@ -39,22 +46,11 @@ function EventPreview() {
       <EventHeader event={event} />
       <OrganizerCard organizer={event.organizer} />
       <AboutSection description={event.description} />
-      
-      <div className="distance-section">
-        <h3><i class="fa-solid fa-route"></i> Distance - {event.distance}</h3>
-        <p>See the route where we will be running</p>
-        <button className="open-map-btn">Open Map</button>
-      </div>
-
-      <div className="buddy-section">
-        <h3>🏃 You don't like to run alone?</h3>
-        <p>Join a buddy program where u will be matched with a person to run and motivate each other</p>
-        <button className="join-buddy-btn">Join Buddy Program</button>
-      </div>
-
-      {/* Add more sections: Playlist, Gallery */}
-
-      <button className="buy-ticket-btn">BUY TICKET 15 DKK</button>
+      <DistanceSection distance={event.distance} />
+      <BuddySection />
+      <PlaylistSection playlistUrl={event.playlistUrl} />
+      <EventGallery images={event.galleryImages} />
+      <BuyTicket/>
     </div>
   );
 }
