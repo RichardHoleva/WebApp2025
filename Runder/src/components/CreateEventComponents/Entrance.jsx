@@ -58,7 +58,7 @@ const Entrance = ({ setTypeOfRun, onPriceChange }) => {
             id="ticketPrice"
             value={ticketPrice}
             onChange={(e) => handlePriceChange(e.target.value)}
-            placeholder="Enter price"
+            placeholder="Enter price in DKK"
             min="0"
             step="0.01"
           />

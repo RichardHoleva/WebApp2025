@@ -6,7 +6,7 @@ export default function AddRunInput() {
   const navigate = useNavigate();
 
   const handleCreateEvent = () => {
-    navigate('/Create-General');
+    navigate('/create-general');
   };
 
   return (
