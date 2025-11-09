@@ -3,8 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import EventHeader from '../components/previewComponents/EventHeader';
 import OrganizerCard from '../components/previewComponents/OrganizerCard';
 import AboutSection from '../components/previewComponents/AboutSection';
+import DistanceSection from '../components/previewComponents/DistanceSection';
+import BuddySection from '../components/previewComponents/BuddySection';
 import familyRunImage from '../assets/familyrun.png';
 import richardholeva from '../assets/richardholeva.png'
+import BuyTicket from '../components/previewComponents/BuyTicket';
 import '../styles/preview.css';
 
 function EventPreview() {
@@ -39,22 +42,12 @@ function EventPreview() {
       <EventHeader event={event} />
       <OrganizerCard organizer={event.organizer} />
       <AboutSection description={event.description} />
-      
-      <div className="distance-section">
-        <h3><i class="fa-solid fa-route"></i>  Distance - {event.distance}</h3>
-        <p>See the route where we will be running</p>
-        <button className="open-map-btn">Open Map</button>
-      </div>
-
-      <div className="buddy-section">
-        <h3><i class="fa-regular fa-handshake"></i> You don't like to run alone?</h3>
-        <p>Join a buddy program where u will be matched with a person to run and motivate each other</p>
-        <button className="join-buddy-btn">Join Buddy Program</button>
-      </div>
+      <DistanceSection distance={event.distance} />
+      <BuddySection />
 
       {/* Add more sections: Playlist, Gallery */}
 
-      <button className="buy-ticket-btn">BUY TICKET 15 DKK</button>
+      <BuyTicket/>
     </div>
   );
 }
