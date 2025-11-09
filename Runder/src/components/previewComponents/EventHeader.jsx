@@ -6,7 +6,7 @@ function EventHeader({ event }) {
     <div className="event-header">
       <div className="header-actions">
         <button className="back-btn">←</button>
-        <button className="share-btn">⤴</button>
+        <button className="share-btn"><i class="fa-solid fa-share-nodes"></i></button>
       </div>
       <img src={event.image} alt={event.title} className="event-image" />
       <div className="event-info">
