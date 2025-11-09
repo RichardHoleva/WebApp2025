@@ -1,7 +1,17 @@
+:root {
+    --black : #201E1F;
+    --yellow : #DAFF00;
+    --white : #FEFEFE;
+
+}
+
+
+
+
 /* Event Preview Page */
 .event-preview-page {
-  background-color: #0a0a0a;
-  color: #ffffff;
+  background-color: var(--black);
+  color: var(--white);
   min-height: 100vh;
   padding-bottom: 80px;
 }
