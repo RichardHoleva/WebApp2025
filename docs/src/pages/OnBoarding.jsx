@@ -1,4 +1,4 @@
-import OnboardingSlider from '../components/OnboardingSlider';
+import OnboardingSlider from '../components/OnBoardingSlider';
 import FirstImageOB from '../assets/FirstPageImage.png';
 import OnBoardingOne from '../assets/onboarding1.png';
 import SecondImageOB from '../assets/SecondPageImage.png';
