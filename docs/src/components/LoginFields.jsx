@@ -54,7 +54,7 @@ export default function LoginFields() {
       {err && <p className="error-message">{err}</p>}
       <button disabled={busy} type="submit">Log in</button>
       <p className="signup-link">
-        <Link to="/register">Forgot password?</Link>
+        <Link to="/register">Forgot password</Link>
       </p>
     </form>
   )
