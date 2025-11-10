@@ -1,4 +1,4 @@
-import OnboardingSlider from '../components/OnBoardingSlider';
+import OnBoardingSlider from '../components/OnBoardingSlider.jsx';
 import FirstImageOB from '../assets/FirstPageImage.png';
 import OnBoardingOne from '../assets/onboarding1.png';
 import SecondImageOB from '../assets/SecondPageImage.png';
@@ -28,5 +28,5 @@ export default function OnBoarding() {
     }
   ];
 
-  return <OnboardingSlider slides={slides} />;
+  return <OnBoardingSlider slides={slides} />;
 }

@@ -1,5 +1,5 @@
-import { supabase } from './supabase'
-import { uploadFileForUser, createSignedUrl, removeFile } from './storage'
+import { supabase } from './supabase.js'
+import { uploadFileForUser, createSignedUrl, removeFile } from './storage.js'
 
 export async function createEvent(eventData, imageFile = null) {
   try {

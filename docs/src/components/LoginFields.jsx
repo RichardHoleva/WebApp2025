@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { useAuth } from '../auth/AuthProvider' 
+import { useAuth } from '../auth/AuthProvider.jsx' 
 import '../styles/login.css'
 
 // login form with email and password fields

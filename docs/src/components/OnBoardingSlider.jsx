@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/onboarding.css';
-import Logo from '../assets/logo.png';
+import Logo from '../assets/Logo.png';
 
-export default function OnboardingSlider({ slides }) {
+export default function OnBoardingSlider({ slides }) {
   const nav = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [touchStart, setTouchStart] = useState(0);

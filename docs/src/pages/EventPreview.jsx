@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import EventHeader from '../components/previewComponents/EventHeader';
-import OrganizerCard from '../components/previewComponents/OrganizerCard';
-import AboutSection from '../components/previewComponents/AboutSection';
-import DistanceSection from '../components/previewComponents/DistanceSection';
-import BuddySection from '../components/previewComponents/BuddySection';
-import PlaylistSection from '../components/previewComponents/PlaylistSection';
-import EventGallery from '../components/previewComponents/EventGallery';
+import EventHeader from '../components/previewComponents/EventHeader.jsx';
+import OrganizerCard from '../components/previewComponents/OrganizerCard.jsx';
+import AboutSection from '../components/previewComponents/AboutSection.jsx';
+import DistanceSection from '../components/previewComponents/DistanceSection.jsx';
+import BuddySection from '../components/previewComponents/BuddySection.jsx';
+import PlaylistSection from '../components/previewComponents/PlaylistSection.jsx';
+import EventGallery from '../components/previewComponents/EventGallery.jsx';
 import familyRunImage from '../assets/familyrun.png';
 import richardholeva from '../assets/richardholeva.png'
-import BuyTicket from '../components/previewComponents/BuyTicket';
+import BuyTicket from '../components/previewComponents/BuyTicket.jsx';
 import '../styles/preview.css';
 
 function EventPreview() {

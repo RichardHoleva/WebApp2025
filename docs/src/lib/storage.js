@@ -1,5 +1,5 @@
 // src/lib/storage.js
-import { supabase } from './supabase'
+import { supabase } from './supabase.js'
 
 export async function uploadFileForUser(userId, file, bucket = 'user-uploads') {
   const path = `${userId}/${Date.now()}-${file.name}`

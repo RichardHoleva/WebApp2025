@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../auth/AuthProvider';
+import { useAuth } from '../auth/AuthProvider.jsx';
 import AddRunInput from '../components/dashboardComponents/AddRunInput.jsx';
 import NavBar from '../components/NavBar.jsx';
 import Calendar from '../components/dashboardComponents/Calendar.jsx';
 import Filter from '../components/dashboardComponents/Filter.jsx';
 import '../styles/dashboard.css';
-import EventCard from '../components/dashboardComponents/event-card.jsx';
+import EventCard from '../components/dashboardComponents/EventCard.jsx';
 import { getAllEvents, getUserEvents, getJoinedEvents, joinEvent, deleteEvent } from '../lib/events.js';
 import runnerImage from '../assets/runner.png';
 

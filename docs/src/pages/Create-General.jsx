@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar.jsx";
 import ProgressBar from "../components/ProgressBar.jsx";
 import "../styles/generalinfo.css";
 import AddImage from "../components/CreateEventComponents/AddImage.jsx";
-import InputField from "../components/CreateEventComponents/inputField.jsx";
+import InputField from "../components/CreateEventComponents/InputField.jsx";
 import Entrance from "../components/CreateEventComponents/Entrance.jsx";
 import { createEvent } from "../lib/events.js";
 

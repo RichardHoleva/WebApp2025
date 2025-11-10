@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../auth/AuthProvider' // adjust path
+import { useAuth } from '../auth/AuthProvider.jsx' // adjust path
 import '../styles/profile.css'
-import NavBar from '../components/NavBar'
+import NavBar from '../components/NavBar.jsx'
 
 export default function Profile() {
   const navigate = useNavigate()
