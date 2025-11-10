@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: docs       # your app is in /docs
+        working-directory: docs        # run npm commands in /docs
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
