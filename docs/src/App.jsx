@@ -13,14 +13,12 @@ import EventPreview from './pages/EventPreview.jsx'
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/WebApp2025">
         <Routes>
-          {/* Public routes */}
           <Route path="/" element={<OnBoarding />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
-          {/* Protected routes */}
+          
           <Route element={<Protected />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/create-general" element={<CreateGeneral />} />
