@@ -7,7 +7,7 @@ import Register from './pages/Register.jsx'
 import OnBoarding from './pages/OnBoarding.jsx'
 import CreateGeneral from './pages/Create-General.jsx'
 import Profile from './pages/Profile.jsx'
-import NotFound from './Pages/NotFound.jsx'
+import NotFound from './pages/NotFound.jsx'
 import EventPreview from './pages/EventPreview.jsx'
 
 export default function App() {
